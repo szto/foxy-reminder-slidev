@@ -269,8 +269,8 @@ level: 2
 ````
 
 <div class="grid" grid-cols-2>
-  <img src="public/images/reminder-list.png" class="m-10 h-30 rounded shadow">
-  <img src="public/images/reminder-list-new.png" class="m-10 h-30 rounded shadow">
+  <img src="/images/reminder-list.png" class="m-10 h-30 rounded shadow">
+  <img src="/images/reminder-list-new.png" class="m-10 h-30 rounded shadow">
 </div>
 
 

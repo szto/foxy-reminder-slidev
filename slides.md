@@ -26,7 +26,7 @@ mdc: true
 
 # 과거로의 회귀? Hypermedia 기반 개발 Fastapi HTMX 체험하기
 
-Pyweb Simpoisum
+Pyweb Simposium 2024
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
@@ -52,7 +52,7 @@ The last comment block of each slide will be treated as slide notes. It will be 
 transition: fade-out
 ---
 
-# What is Slidev?
+# In Progress
 
 Slidev is a slides maker and presenter designed for developers, consist of the following features
 

@@ -38,6 +38,10 @@ Pyweb Simposium 2024
   <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon:edit />
   </button>
+  <a href="http://localhost:8000" target="_blank" alt="Localhost" title="Open in Localhost"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon:application-web />
+  </a>
   <a href="https://github.com/szto/foxy-reminder" target="_blank" alt="GitHub" title="Open in GitHub"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />

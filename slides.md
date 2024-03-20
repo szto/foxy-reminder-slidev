@@ -243,6 +243,29 @@ level: 2
     <img src="/static/img/icons/icon-add.svg" class="h-6 w-6" />
 </div>
 ```
+
+```html {*|8|9|1-7|*}
+  <input
+    type="text"
+    placeholder="New list"
+    name="reminder_list_name"
+    autofocus
+    size="40"
+  />
+  <div class="flex items-center">
+    <img
+      class="h-6 w-6 mr-2"
+      src="/static/img/icons/icon-check-circle.svg"
+      hx-post="/reminders/new-list-row"
+      hx-include="[name='reminder_list_name']"
+      hx-target=".reminders-content"
+      hx-trigger="click, keyup[key=='Enter'] from:[name='reminder_list_name']"
+      hx-swap="outerHTML"
+    />
+  </div>
+</div>
+```
+
 ````
 
 <div class="grid" grid-cols-2>

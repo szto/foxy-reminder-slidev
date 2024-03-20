@@ -140,7 +140,7 @@ The title will be inferred from your slide content, or you can override it with 
 
 <Toc v-click minDepth="1" maxDepth="2"></Toc>
 
-![Local Image](static/img/reminder-list.png)
+![Local Image](public/images/reminder-list.png)
 
 # Code
 
@@ -269,8 +269,8 @@ level: 2
 ````
 
 <div class="grid" grid-cols-2>
-  <img src="static/img/reminder-list.png" class="m-10 h-30 rounded shadow">
-  <img src="static/img/reminder-list-new.png" class="m-10 h-30 rounded shadow">
+  <img src="public/images/reminder-list.png" class="m-10 h-30 rounded shadow">
+  <img src="public/images/reminder-list-new.png" class="m-10 h-30 rounded shadow">
 </div>
 
 

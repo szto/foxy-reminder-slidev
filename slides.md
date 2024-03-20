@@ -140,10 +140,7 @@ The title will be inferred from your slide content, or you can override it with 
 
 <Toc v-click minDepth="1" maxDepth="2"></Toc>
 
----
-layout: image-right
-image: https://cover.sli.dev
----
+![Local Image](static/img/reminder-list.png)
 
 # Code
 
@@ -197,75 +194,63 @@ Notes can also sync with clicks
 level: 2
 ---
 
-# Shiki Magic Move
+# Content
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
+컨텐츠 HTML에서는 리마인더 리스트, 리만인더 상세를 구분함.
 ````md magic-move
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
+```html {*|5-8|5-7|8|12-20|*}
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 m-8 reminders-content p-8">
+  <div class="bg-white rounded-lg shadow overflow-hidden m-4">
+    <h3 class="text-xl font-semibold text-gray-700 p-4 mb-6 border-b">Reminder Lists</h3>
+    <div class="divide-y m-4 reminder-list-list">
+      {% for reminder_list in reminder_lists %}
+        {% include "partials/reminders/list-row.html" %}
+      {% endfor %}
+      {% include "partials/reminders/new-list-row.html" %}
+    </div>
+  </div>
+  <div class="bg-white rounded-lg shadow overflow-hidden m-4 reminders_content-items">
+      {% if selected_list %}
+      <h3 class="text-xl font-semibold text-gray-700 p-4 mb-6 border-b">{{ selected_list.name }}</h3>
+      <div class="divide-y m-4">
+      {% for reminder_item in selected_list.items %}
+        {% include "partials/reminders/item-row.html" %}
+      {% endfor %}
+      {% include "partials/reminders/new-item-row.html" %}
+      </div>
+      {% endif %}
+  </div>
+</div>
 ```
 
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
+````
 
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
+---
 
-Non-code blocks are ignored.
+# New List Row
 
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
+리스트 하단에서 새로운 리마인드 리스트를 생성할 수 있도록 함.
+````md magic-move
+```html {*|8|9|1-7|*}
+<div
+    class="reminder-row flex items-center justify-between p-3 hover:bg-gray-100 cursor-pointer text-gray-400"
+    data-id="new-reminder-row"
+    hx-get="/reminders/new-list-row-edit"
+    hx-trigger="click"
+    hx-swap="outerHTML"
+>
+    <p>New list</p>
+    <img src="/static/img/icons/icon-add.svg" class="h-6 w-6" />
+</div>
 ```
 ````
+
+<div class="grid" grid-cols-2>
+  <img src="static/img/reminder-list.png" class="m-10 h-30 rounded shadow">
+  <img src="static/img/reminder-list-new.png" class="m-10 h-30 rounded shadow">
+</div>
+
+
 
 ---
 

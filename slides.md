@@ -24,9 +24,9 @@ transition: slide-left
 mdc: true
 ---
 
-# Welcome to Slidev
+# 과거로의 회귀? Hypermedia 기반 개발 Fastapi HTMX 체험하기
 
-Presentation slides for developers
+Pyweb Simpoisum
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">

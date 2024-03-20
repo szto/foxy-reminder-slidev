@@ -140,8 +140,6 @@ The title will be inferred from your slide content, or you can override it with 
 
 <Toc v-click minDepth="1" maxDepth="2"></Toc>
 
-![Local Image](public/images/reminder-list.png)
-
 # Code
 
 Use code snippets and get the highlighting directly, and even types hover![^1]

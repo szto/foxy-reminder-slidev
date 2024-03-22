@@ -70,7 +70,7 @@ level: 2
 
 # Architecture
 
-<img src="public/images/htmx-architecture.png" class="m-5 h-100 rounded shadow">
+<img src="https://foxy-reminder-slidev.vercel.app/public/images/htmx-architecture.png" class="m-5 h-100 rounded shadow">
 
 
 ---
@@ -80,7 +80,7 @@ level: 2
 
 # Architecture for Python
 
-<img src="public/images/full-stack-python-architecture.png" class="m-5 h-100 rounded shadow" v-after>
+<img src="https://foxy-reminder-slidev.vercel.app/public/images/full-stack-python-architecture.png" class="m-5 h-100 rounded shadow" v-after>
 
 
 ---

@@ -60,7 +60,7 @@ layout: center
 <h2 class="text-center mt-10">Foxy-Reminder</h2>
 
 <p v-after class="opacity-30 transform text-center">Reminders App</p>
-<img src="https://foxy-reminder-slidev.vercel.app/public/images/foxy-raw.png" class="m-5 h-70 rounded shadow">
+<img src="https://foxy-reminder-slidev.vercel.app/images/foxy-raw.png" class="m-5 h-70 rounded shadow">
 <p class="italic text-blue-600">https://github.com/szto/foxy-reminder/</p>
 
 ---
@@ -70,7 +70,7 @@ level: 2
 
 # Architecture
 
-<img src="https://foxy-reminder-slidev.vercel.app/public/images/htmx-architecture.png" class="m-5 h-100 rounded shadow">
+<img src="https://foxy-reminder-slidev.vercel.app/images/htmx-architecture.png" class="m-5 h-100 rounded shadow">
 
 
 ---
@@ -80,7 +80,7 @@ level: 2
 
 # Architecture for Python
 
-<img src="https://foxy-reminder-slidev.vercel.app/public/images/full-stack-python-architecture.png" class="m-5 h-100 rounded shadow" v-after>
+<img src="https://foxy-reminder-slidev.vercel.app/images/full-stack-python-architecture.png" class="m-5 h-100 rounded shadow" v-after>
 
 
 ---

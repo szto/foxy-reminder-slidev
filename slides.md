@@ -27,7 +27,7 @@ mdc: true
 # 과거로의 회귀? Hypermedia 기반 개발 Fastapi HTMX 체험하기
 
 <p>Pyweb Simposium 2024</p>
-<p>발표자: 김순</p>
+<p>발표자: 김순(페히이어)</p>
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
@@ -417,10 +417,19 @@ async def post_reminders_new_list_row(
 ```
 
 ---
+layout: two-cols
+---
 
-# Hypermedia
+# Hypermedia-driven API
 
+- **HATEOAS**란 **Hypermedia As The Engine Of Application State**의 약자로, 기본적인 아이디어는 하이퍼미디어를 애플리케이션의 상태를 관리하기 위한 매커니즘으로 사용한다는 것입니다.
+- RESTAPI 의 단점
+  - API의 엔드포인트가 URL이 정해지고 나면 이를 변경하기 어려움
+  - REST API는 자원의 상태를 고려하지 않는 디자인
 
+::right::
+
+<img src="https://foxy-reminder-slidev.vercel.app/images/hyermedia.png" class="m-5 h-60 rounded shadow">
 
 ---
 
@@ -446,6 +455,28 @@ def test_successful_login(page: Page, user: User):
     expect(page.locator("id=reminders-message")).to_have_text(f"Reminders for {user.username}")
     expect(page.get_by_role("button", name="Logout")).to_be_visible()
 ```
+
+---
+
+# Architecture for Python
+
+<img src="https://foxy-reminder-slidev.vercel.app/images/full-stack-python-architecture.png" class="m-5 h-100 rounded shadow" v-after>
+
+
+
+---
+layout: two-cols
+---
+
+# Futures
+
+<img src="https://foxy-reminder-slidev.vercel.app/images/full_stack_1.png" class="m-5 h-80 rounded shadow">
+
+::right::
+
+# For Backend
+
+<img src="https://foxy-reminder-slidev.vercel.app/images/full_stack_2.png" class="m-5 h-80 rounded shadow">
 
 ---
 transition: fade-out

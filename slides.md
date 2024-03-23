@@ -61,9 +61,11 @@ layout: center
 <h2 class="text-center mt-10">Foxy-Reminder</h2>
 
 <p v-after class="opacity-30 transform text-center">Reminders App</p>
-<img src="https://foxy-reminder-slidev.vercel.app/images/foxy-raw.png" class="m-5 h-70 rounded shadow">
-<img src="https://foxy-reminder-slidev.vercel.app/images/foxy-reminder-qr.png" class="m-5 h-70 rounded shadow">
-<p class="italic text-blue-600">https://github.com/szto/foxy-reminder/</p>
+<div class="flex justify-center items-center space-x-5">
+  <img src="https://foxy-reminder-slidev.vercel.app/images/foxy-raw.png" class="m-5 h-50 rounded shadow">
+  <img src="https://foxy-reminder-slidev.vercel.app/images/foxy-reminder-qr.png" class="m-5 h-50 rounded shadow">
+</div>
+<p class="italic text-blue-600 flex justify-center">https://github.com/szto/foxy-reminder/</p>
 
 
 
@@ -116,7 +118,7 @@ transition: fade-out
 └── tests
 ```
 
-```html
+```html{*}
 ├── app
 │   ├── __init__.py
 │   ├── main.py
@@ -224,7 +226,7 @@ async def post_reminders_new_list_row(
     return templates.TemplateResponse("pages/reminders.html", context)
 ```
 
-```html
+```html{*}
 def _build_full_page_context(request: Request, storage: ReminderStorage):
     # reminder_lists
     reminder_lists = storage.get_lists()
@@ -248,7 +250,7 @@ def _build_full_page_context(request: Request, storage: ReminderStorage):
     }
 ```
 
-```html{1,4,8}
+```html{*|1,5|7,14}
 // 호출 시
 @router.get("/reminders", summary="Logs into the app", response_class=HTMLResponse)
 async def get_reminders(request: Request, storage: ReminderStorage = Depends(get_storage_for_page)):
@@ -371,3 +373,39 @@ async def post_reminders_new_list_row(
   </div>
 </div>
 ```
+
+---
+
+# Test
+Playwright 를 사용한 테스트
+- 하나의 API로 모든 최신 브라우저(크로미움, 파이어폭스, 웹킷)에서 빠르고, 안정적인 자동화를 지원하는 MS에서 만든 자동화 도구
+
+```html
+def test_successful_login(page: Page, user: User):
+    # Given the login page is displayed
+    page.goto("/login")
+
+    # When the user logs into the app with valid credentials
+    page.locator('[name="username"]').fill(user.username)
+    page.locator('[name="password"]').fill(user.password)
+    page.click("#login")
+
+    # Then the reminders page is displayed
+    expect(page).to_have_title("Reminders | Foxy Reminders app")
+    expect(page).to_have_url(re.compile(re.escape("/") + "reminders"))
+    expect(page.locator("id=foxy-logo")).to_be_visible()
+    expect(page.locator("id=foxy-title")).to_have_text("Foxy Reminders")
+    expect(page.locator("id=reminders-message")).to_have_text(f"Reminders for {user.username}")
+    expect(page.get_by_role("button", name="Logout")).to_be_visible()
+```
+
+---
+transition: fade-out
+layout: center
+---
+
+<h2 class="text-center mt-10">Foxy-Reminder</h2>
+
+<p v-after class="opacity-30 transform text-center">Reminders App</p>
+<img src="https://foxy-reminder-slidev.vercel.app/images/foxy-reminder-qr.png" class="m-5 h-70 rounded shadow">
+<p class="italic text-blue-600">https://github.com/szto/foxy-reminder/</p>

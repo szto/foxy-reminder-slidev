@@ -433,7 +433,7 @@ layout: two-cols
 ::right::
 
 <img src="https://foxy-reminder-slidev.vercel.app/images/hyermedia.png" class="m-5 h-60 rounded shadow">
-<a href="https://martinfowler.com/articles/richardsonMaturityModel.html">https://martinfowler.com/articles/richardsonMaturityModel.html</a>
+<a href="https://martinfowler.com/articles/richardsonMaturityModel.html">마틴 파울러, Rest in Practice</a>
 
 ---
 

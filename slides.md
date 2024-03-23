@@ -165,12 +165,12 @@ transition: fade-out
 
 ````
 
---- # Content
+--- 
+
+# Content
 
 <img src="https://foxy-reminder-slidev.vercel.app/images/foxy-reminder-content.png" class="m-5 h-100 rounded shadow" v-after>
 
----
-level: 2
 ---
 
 # Content
@@ -274,6 +274,45 @@ async def post_reminders_new_list_row(
 ```
 ````
 
+--- 
+
+# List Row
+
+```html
+<div
+    class="flex items-center justify-between p-3 hover:bg-gray-100 cursor-pointer reminder-row{{ 'selected-list.id' if reminder_list.id == selected_list_id }}"
+    data-id="reminder-row-{{ reminder_list.id }}"
+>
+    <p
+        hx-post="/reminders/select/{{ reminder_list.id }}"
+        hx-target=".reminders-content"
+        hx-trigger="click"
+        hx-swap="outerHTML"
+        hx-target=".reminders-content"
+    >
+        {{ reminder_list.name }}
+    </p>
+    <div class="flex items-center">
+        <img
+            class="h-6 w-6 mr-2" src="/static/img/icons/icon-edit.svg"
+            hx-get="/reminders/list-row-edit/{{ reminder_list.id }}"
+            hx-target="[data-id='reminder-row-{{ reminder_list.id }}']"
+            hx-trigger="click"
+            hx-swap="outerHTML"
+        />
+        <img/>
+    </div>
+</div
+```
+
+---
+
+# HX
+
+- **hx-get=”/get-user-data”**: 버튼이 클릭되면, 서버의 “/get-user-data”로 GET 요청을 보냅니다.
+- **hx-trigger=”click”**: 버튼이 클릭될 때 GET 요청이 시작되도록 지정합니다.
+- **hx-target=”#target-element”**: 서버로부터의 응답으로 id가 “target-element”인 요소의 내용을 대체하도록 HTMX에 지시합니다.
+
 ---
 
 # New List Row
@@ -376,6 +415,12 @@ async def post_reminders_new_list_row(
   </div>
 </div>
 ```
+
+---
+
+# Hypermedia
+
+
 
 ---
 

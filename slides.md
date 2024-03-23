@@ -27,7 +27,7 @@ mdc: true
 # 과거로의 회귀? Hypermedia 기반 개발 Fastapi HTMX 체험하기
 
 <p>Pyweb Simposium 2024</p>
-<p>발표자: 김순(페히이어)</p>
+<p>발표자: 김순 / Payhere / Backend Developer</p>
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
@@ -215,18 +215,6 @@ transition: fade-out
 async def get_reminders(request: Request, storage: ReminderStorage = Depends(get_storage_for_page)):
     context = _build_full_page_context(request, storage)
     return templates.TemplateResponse("pages/reminders.html", context)
-    
-// 생성 시
-@router.post("/reminders/new-list-row", response_class=HTMLResponse)
-async def post_reminders_new_list_row(
-    request: Request,
-    storage: ReminderStorage = Depends(get_storage_for_page),
-    reminder_list_name: str = Form(),
-):
-    list_id = storage.create_list(reminder_list_name)
-    storage.set_selected_list(list_id)
-    context = _build_full_page_context(request, storage)
-    return templates.TemplateResponse("pages/reminders.html", context)
 ```
 
 ```html{*}
@@ -253,22 +241,10 @@ def _build_full_page_context(request: Request, storage: ReminderStorage):
     }
 ```
 
-```html{*|1,5|7,14|*}
+```html{*|1,5|*}
 // 호출 시
 @router.get("/reminders", summary="Logs into the app", response_class=HTMLResponse)
 async def get_reminders(request: Request, storage: ReminderStorage = Depends(get_storage_for_page)):
-    context = _build_full_page_context(request, storage)
-    return templates.TemplateResponse("pages/reminders.html", context)
-    
-// 생성 시
-@router.post("/reminders/new-list-row", response_class=HTMLResponse)
-async def post_reminders_new_list_row(
-    request: Request,
-    storage: ReminderStorage = Depends(get_storage_for_page),
-    reminder_list_name: str = Form(),
-):
-    list_id = storage.create_list(reminder_list_name)
-    storage.set_selected_list(list_id)
     context = _build_full_page_context(request, storage)
     return templates.TemplateResponse("pages/reminders.html", context)
 ```
@@ -308,10 +284,37 @@ async def post_reminders_new_list_row(
 ---
 
 # HX
+ 
 
-- **hx-get=”/get-user-data”**: 버튼이 클릭되면, 서버의 “/get-user-data”로 GET 요청을 보냅니다.
-- **hx-trigger=”click”**: 버튼이 클릭될 때 GET 요청이 시작되도록 지정합니다.
-- **hx-target=”#target-element”**: 서버로부터의 응답으로 id가 “target-element”인 요소의 내용을 대체하도록 HTMX에 지시합니다.
+- AJAX: HTML 에서 직접 AJAX 요청을 수행
+  - hx-get
+  ```html
+  <div hx-get="/messages">
+    Put To Messages
+  </div>
+  ```
+  - hx-post
+  - hx-put
+  - hx-patch
+  - hx-delete
+- hx-trigger: 트리거 방식
+  - submit
+  - mouseenter
+  - mouseenter once
+  - changed
+
+---
+
+# HX
+
+- hx-target: 서버에서 받은 응답을 타게팅
+  - this
+  - css class element: ex)#search-results
+- hx-swap: 요소를 대체하는 방식
+  - innerHTML
+  - outerHTML
+  - afterbegin
+  - beforebegin
 
 ---
 
@@ -430,6 +433,7 @@ layout: two-cols
 ::right::
 
 <img src="https://foxy-reminder-slidev.vercel.app/images/hyermedia.png" class="m-5 h-60 rounded shadow">
+<a href="https://martinfowler.com/articles/richardsonMaturityModel.html">https://martinfowler.com/articles/richardsonMaturityModel.html</a>
 
 ---
 

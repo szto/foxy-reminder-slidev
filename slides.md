@@ -165,6 +165,9 @@ transition: fade-out
 
 ````
 
+--- # Content
+
+<img src="https://foxy-reminder-slidev.vercel.app/images/foxy-reminder-content.png" class="m-5 h-100 rounded shadow" v-after>
 
 ---
 level: 2

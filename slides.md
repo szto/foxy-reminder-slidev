@@ -97,7 +97,7 @@ transition: fade-out
 # Folder Tree
 
 ````md magic-move
-```html {*|4-7,11,16,18}
+```html {*|4-7,11,16,18|*}
 .
 ├── LICENSE
 ├── README.md
@@ -135,7 +135,7 @@ transition: fade-out
 │       └── storage.py
 ```
 
-```html
+```html{*}
 ├── templates
 │   ├── pages
 │   │   ├── login.html
@@ -154,7 +154,7 @@ transition: fade-out
 │           └── new-list-row.html
 ```
 
-```html
+```html{*}
 └── tests
     ├── __init__.py
     ├── conftest.py
@@ -206,7 +206,7 @@ level: 2
 # API
 
 ````md magic-move
-```html{*|1,4,7}
+```html{*|1,4,7|*}
 // 호출 시
 @router.get("/reminders", summary="Logs into the app", response_class=HTMLResponse)
 async def get_reminders(request: Request, storage: ReminderStorage = Depends(get_storage_for_page)):
@@ -250,7 +250,7 @@ def _build_full_page_context(request: Request, storage: ReminderStorage):
     }
 ```
 
-```html{*|1,5|7,14}
+```html{*|1,5|7,14|*}
 // 호출 시
 @router.get("/reminders", summary="Logs into the app", response_class=HTMLResponse)
 async def get_reminders(request: Request, storage: ReminderStorage = Depends(get_storage_for_page)):

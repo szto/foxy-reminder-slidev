@@ -273,3 +273,28 @@ level: 2
 # Edit List Row
 
 리마인더 리스트를 수정
+
+```html
+<div
+  class="reminder-row-with-input{{ ' selected-list.id' if reminder_list.id == selected_list }} flex items-center justify-between p-3 hover:bg-gray-100 cursor-pointer text-gray-400"
+  data-id="reminder-row-{{ reminder_list.id }}"
+>
+  <input
+    type="text" value="{{ reminder_list.name }}"
+    placeholder="{{ reminder_list.name }}"
+    name="new_name" onfocus="this.select();" autofocus
+  />
+  <div class="flex items-center">
+    <img
+            class="h-6 w-6 mr-2"
+            src="/static/img/icons/icon-check-circle.svg"
+            hx-patch="/reminders/list-row-name/{{ reminder_list.id }}"
+            hx-include="[name='new_name']"
+            hx-target=".reminders-content"
+            hx-trigger="click, keyup[key=='Enter'] from:[name='new_name']"
+            hx-swap="outerHTML"
+    />
+    <img/>
+  </div>
+</div>
+```

@@ -62,6 +62,7 @@ layout: center
 
 <p v-after class="opacity-30 transform text-center">Reminders App</p>
 <img src="https://foxy-reminder-slidev.vercel.app/images/foxy-raw.png" class="m-5 h-70 rounded shadow">
+<img src="https://foxy-reminder-slidev.vercel.app/images/foxy-reminder-qr.png" class="m-5 h-70 rounded shadow">
 <p class="italic text-blue-600">https://github.com/szto/foxy-reminder/</p>
 
 
@@ -200,6 +201,76 @@ level: 2
 
 ---
 
+# API
+
+````md magic-move
+```html{*|1,4,7}
+// 호출 시
+@router.get("/reminders", summary="Logs into the app", response_class=HTMLResponse)
+async def get_reminders(request: Request, storage: ReminderStorage = Depends(get_storage_for_page)):
+    context = _build_full_page_context(request, storage)
+    return templates.TemplateResponse("pages/reminders.html", context)
+    
+// 생성 시
+@router.post("/reminders/new-list-row", response_class=HTMLResponse)
+async def post_reminders_new_list_row(
+    request: Request,
+    storage: ReminderStorage = Depends(get_storage_for_page),
+    reminder_list_name: str = Form(),
+):
+    list_id = storage.create_list(reminder_list_name)
+    storage.set_selected_list(list_id)
+    context = _build_full_page_context(request, storage)
+    return templates.TemplateResponse("pages/reminders.html", context)
+```
+
+```html
+def _build_full_page_context(request: Request, storage: ReminderStorage):
+    # reminder_lists
+    reminder_lists = storage.get_lists()
+    list_count = len(reminder_lists)
+    
+    # selected_list
+    selected_list = storage.get_selected_list()
+    selected_list_count = len(selected_list.items) if selected_list else 0
+    working_count = len([item for item in selected_list.items if not item.completed]) if selected_list else 0
+    done_count = selected_list_count - working_count
+
+    return {
+        "request": request,
+        "owner": storage.owner,
+        "reminder_lists": reminder_lists,
+        "selected_list": selected_list,
+        "list_count": list_count,
+        "selected_list_count": selected_list_count,
+        "working_count": working_count,
+        "done_count": done_count,
+    }
+```
+
+```html{1,4,8}
+// 호출 시
+@router.get("/reminders", summary="Logs into the app", response_class=HTMLResponse)
+async def get_reminders(request: Request, storage: ReminderStorage = Depends(get_storage_for_page)):
+    context = _build_full_page_context(request, storage)
+    return templates.TemplateResponse("pages/reminders.html", context)
+    
+// 생성 시
+@router.post("/reminders/new-list-row", response_class=HTMLResponse)
+async def post_reminders_new_list_row(
+    request: Request,
+    storage: ReminderStorage = Depends(get_storage_for_page),
+    reminder_list_name: str = Form(),
+):
+    list_id = storage.create_list(reminder_list_name)
+    storage.set_selected_list(list_id)
+    context = _build_full_page_context(request, storage)
+    return templates.TemplateResponse("pages/reminders.html", context)
+```
+````
+
+---
+
 # New List Row
 
 리스트 하단에서 새로운 리마인드 리스트를 생성할 수 있도록 함.
@@ -267,6 +338,8 @@ level: 2
   <img src="https://foxy-reminder-slidev.vercel.app/images/reminder-list.png" class="m-10 h-30 rounded shadow">
   <img src="https://foxy-reminder-slidev.vercel.app/images/reminder-list-new.png" class="m-10 h-30 rounded shadow">
 </div>
+
+
 
 ---
 
